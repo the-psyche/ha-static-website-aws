@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yusuf Olasedidun Boluwatife — Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0B;
+    --bg-2:#131315;
+    --line:#242428;
+    --line-soft:#1A1A1D;
+    --text:#F2F2F0;
+    --text-dim:#8A8F98;
+    --text-faint:#55585F;
+    --accent:#5EEAD4;
+    --accent-dim:#5EEAD433;
+    --max:720px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{background:var(--bg); scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  a{color:inherit; text-decoration:none;}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  /* ---------- background texture ---------- */
+  .bg-grid{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(94,234,212,0.06), transparent 40%),
+      radial-gradient(circle at 85% 0%, rgba(94,234,212,0.04), transparent 35%);
+  }
+
+  .wrap{
+    position:relative; z-index:1;
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- corner bracket motif ---------- */
+  .bracket-frame{
+    position:relative;
+    display:inline-block;
+  }
+  .bracket-frame::before, .bracket-frame::after,
+  .bracket-frame .bl, .bracket-frame .br{
+    content:'';
+    position:absolute;
+    width:14px; height:14px;
+    border-color:var(--accent);
+    border-style:solid;
+    opacity:0.85;
+  }
+  .bracket-frame::before{ top:-10px; left:-10px; border-width:1.5px 0 0 1.5px; }
+  .bracket-frame::after{ top:-10px; right:-10px; border-width:1.5px 1.5px 0 0; }
+  .bracket-frame .bl{ bottom:-10px; left:-10px; border-width:0 0 1.5px 1.5px; }
+  .bracket-frame .br{ bottom:-10px; right:-10px; border-width:0 1.5px 1.5px 0; }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:rgba(10,10,11,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:18px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:17px;
+    letter-spacing:-0.02em;
+  }
+  .logo .thin{ font-weight:400; color:var(--text-dim); }
+  .logo .bold{ font-weight:700; }
+  .nav-links{ display:flex; gap:22px; }
+  .nav-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{ color:var(--accent); }
+  @media (max-width:560px){ .nav-links{ display:none; } }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:88px 0 56px;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+  .hero-top{
+    display:flex;
+    align-items:center;
+    gap:22px;
+  }
+  .avatar{
+    width:64px; height:64px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:20px;
+    color:var(--accent);
+    background:var(--bg-2);
+  }
+  .status-line{
+    display:flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+  }
+  .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 8px var(--accent);
+    flex-shrink:0;
+  }
+  .hero h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(34px, 6vw, 52px);
+    letter-spacing:-0.03em;
+    line-height:1.05;
+  }
+  .hero h1 .role{
+    display:block;
+    font-weight:400;
+    color:var(--text-dim);
+    font-size:0.42em;
+    letter-spacing:0;
+    margin-top:10px;
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+  }
+  .tagline{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    line-height:1.8;
+    color:var(--text-dim);
+    letter-spacing:0.02em;
+    max-width:46ch;
+    border-top:1px solid var(--line);
+    padding-top:18px;
+  }
+  .hero-actions{
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    padding:12px 22px;
+    border:1px solid var(--line);
+    color:var(--text);
+    transition:border-color 0.2s, color 0.2s;
+  }
+  .btn.primary{
+    color:var(--accent);
+    border-color:var(--accent-dim);
+  }
+  .btn:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* ---------- section list rows ---------- */
+  .section-block{ border-top:1px solid var(--line); }
+  .section-block:last-of-type{ border-bottom:1px solid var(--line); }
+
+  .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:22px 0;
+    cursor:pointer;
+    background:none;
+    border:none;
+    width:100%;
+    text-align:left;
+    color:var(--text);
+  }
+  .row-left{ display:flex; align-items:baseline; gap:10px; }
+  .row-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:-0.01em;
+  }
+  .row-count{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--accent);
+  }
+  .row-arrow{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--accent);
+    font-size:16px;
+    transition:transform 0.25s ease;
+    flex-shrink:0;
+  }
+  .row[aria-expanded="true"] .row-arrow{ transform:rotate(90deg); }
+
+  .panel{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.35s ease;
+  }
+  .panel-inner{ padding-bottom:26px; }
+
+  /* Experience */
+  .exp-item{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:18px;
+    padding:16px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .exp-item:first-child{ border-top:none; }
+  .exp-period{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--text-faint);
+    letter-spacing:0.03em;
+    padding-top:2px;
+  }
+  .exp-role{ font-weight:600; font-size:15px; }
+  .exp-co{ color:var(--accent); font-weight:500; }
+  .exp-desc{
+    color:var(--text-dim);
+    font-size:14px;
+    line-height:1.65;
+    margin-top:6px;
+  }
+  @media (max-width:560px){
+    .exp-item{ grid-template-columns:1fr; gap:4px; }
+  }
+
+  /* Skills */
+  .skill-groups{ display:flex; flex-direction:column; gap:18px; }
+  .skill-group-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+  }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    color:var(--text-dim);
+  }
+
+  /* Projects */
+  .proj-item{
+    padding:16px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .proj-item:first-child{ border-top:none; }
+  .proj-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .proj-name{ font-weight:600; font-size:15px; }
+  .proj-link{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+  .proj-desc{ color:var(--text-dim); font-size:14px; line-height:1.65; margin-top:6px; }
+
+  /* Contact / CTA */
+  .cta-wrap{
+    padding:56px 0 90px;
+    display:flex; flex-direction:column; align-items:center; gap:20px;
+    text-align:center;
+  }
+  .cta-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+  }
+  .cta-btn{
+    position:relative;
+    padding:16px 40px;
+    margin-top:14px;
+  }
+  .cta-btn a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    letter-spacing:0.04em;
+    color:var(--accent);
+  }
+  .contact-links{
+    display:flex; gap:22px; flex-wrap:wrap; justify-content:center;
+    margin-top:8px;
+  }
+  .contact-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-dim);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:color 0.2s, border-color 0.2s;
+  }
+  .contact-links a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  footer{
+    padding:24px 0 40px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:var(--text-faint);
+    letter-spacing:0.04em;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+
+<header>
+  <div class="nav-inner">
+    <div class="logo"><span class="bold">yusuf</span><span class="thin">olasedidun</span></div>
+    <nav class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="hero-top">
+      <div class="bracket-frame">
+        <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+        <div class="avatar">YB</div>
+      </div>
+      <div class="status-line"><span class="dot"></span>Available for freelance projects</div>
+    </div>
+
+    <h1>Yusuf Olasedidun
+      <span class="role">Brand &amp; Visual Designer — Creative Direction</span>
+    </h1>
+
+    <p class="tagline">VERSATILE IN VISION. PRECISE IN EXECUTION.<br>A versatile, driven designer with a strong foundation in visual design, growing competence in cloud fundamentals, and a proven ability to learn fast and adapt across creative, technical, and collaborative environments.</p>
+
+    <div class="hero-actions">
+      <a class="btn primary" href="#contact">Get in touch</a>
+      <a class="btn" href="resume.pdf" download>Download résumé</a>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <div class="section-block" id="experience">
+    <button class="row" aria-expanded="true" aria-controls="panel-experience">
+      <div class="row-left">
+        <span class="row-title">Experience</span>
+        <span class="row-count">[4]</span>
+      </div>
+      <span class="row-arrow">›</span>
+    </button>
+    <div class="panel" id="panel-experience" style="max-height:1000px;">
+      <div class="panel-inner">
+
+        <div class="exp-item">
+          <div class="exp-period">2023 — NOW</div>
+          <div>
+            <div class="exp-role">Freelance Designer</div>
+            <div class="exp-desc">Deliver brand identity, logo, and graphic design solutions for diverse clients. Manage projects independently from concept to delivery, collaborating directly with clients to translate ideas into clear visual outcomes.</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">2020 — 2023</div>
+          <div>
+            <div class="exp-role">Senior Designer, <span class="exp-co">Coolzey Kreative</span></div>
+            <div class="exp-desc">Led creative direction for branding and visual design projects. Mentored junior designers and reviewed creative outputs for quality and consistency, working closely with clients to ensure brand alignment.</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">2019 — 2020</div>
+          <div>
+            <div class="exp-role">Junior Designer, <span class="exp-co">Coolzey Kreative</span></div>
+            <div class="exp-desc">Supported design execution for branding and promotional materials, assisting senior creatives in developing visual concepts.</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">2016 — 2018</div>
+          <div>
+            <div class="exp-role">Design Assistant, <span class="exp-co">Kazone Digital Prints</span></div>
+            <div class="exp-desc">Gained hands-on experience in graphic design and print production, preparing design files for print and digital use and building a foundation in design tools and workflows.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section-block" id="education">
+    <button class="row" aria-expanded="false" aria-controls="panel-education">
+      <div class="row-left"><span class="row-title">Education</span></div>
+      <span class="row-arrow">›</span>
+    </button>
+    <div class="panel" id="panel-education">
+      <div class="panel-inner">
+
+        <div class="exp-item">
+          <div class="exp-period">2018 — 2024</div>
+          <div>
+            <div class="exp-role">B.Sc. Zoology</div>
+            <div class="exp-desc">University of Lagos</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">2013 — 2016</div>
+          <div>
+            <div class="exp-role">WASSCE</div>
+            <div class="exp-desc">Scottfield International School</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section-block" id="skills">
+    <button class="row" aria-expanded="false" aria-controls="panel-skills">
+      <div class="row-left"><span class="row-title">Skills</span></div>
+      <span class="row-arrow">›</span>
+    </button>
+    <div class="panel" id="panel-skills">
+      <div class="panel-inner">
+        <div class="skill-groups">
+          <div>
+            <div class="skill-group-label">Creative &amp; design</div>
+            <div class="pill-row">
+              <span class="pill">Brand identity design</span><span class="pill">Logo &amp; visual design</span>
+              <span class="pill">Graphic design (digital &amp; print)</span><span class="pill">Creative direction</span>
+              <span class="pill">Visual storytelling</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">Technical &amp; digital</div>
+            <div class="pill-row">
+              <span class="pill">MS Word</span><span class="pill">MS Excel</span><span class="pill">MS PowerPoint</span>
+              <span class="pill">Online research</span><span class="pill">Cloud computing fundamentals (AWS)</span>
+              <span class="pill">EC2 · S3 · IAM · Lambda · DynamoDB</span><span class="pill">Frontend dev basics</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">Professional &amp; soft skills</div>
+            <div class="pill-row">
+              <span class="pill">Leadership &amp; team coordination</span><span class="pill">Communication &amp; presentation</span>
+              <span class="pill">Problem solving</span><span class="pill">Time management</span>
+              <span class="pill">Adaptability &amp; fast learning</span><span class="pill">Community development</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section-block" id="contact">
+    <button class="row" aria-expanded="false" aria-controls="panel-contact">
+      <div class="row-left"><span class="row-title">Contact</span></div>
+      <span class="row-arrow">›</span>
+    </button>
+    <div class="panel" id="panel-contact">
+      <div class="panel-inner cta-wrap">
+        <div class="cta-eyebrow">Available for freelance projects</div>
+        <div class="bracket-frame cta-btn">
+          <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+          <a href="mailto:Olasedidun@proton.me">Say hello →</a>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:Olasedidun@proton.me">Email</a>
+          <a href="tel:+2349052675792">+234 905 267 5792</a>
+          <a href="https://instagram.com/boytife" target="_blank" rel="noopener">@boytife</a>
+          <a href="resume.pdf" download>Download résumé (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>YUSUF OLASEDIDUN — BUILT FOR THE WEB, NOT THE ARCHIVE</footer>
+
+<script>
+  const rows = document.querySelectorAll('.row');
+  rows.forEach(row => {
+    row.addEventListener('click', () => {
+      const expanded = row.getAttribute('aria-expanded') === 'true';
+      const panel = document.getElementById(row.getAttribute('aria-controls'));
+      row.setAttribute('aria-expanded', String(!expanded));
+      if (expanded) {
+        panel.style.maxHeight = '0px';
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Keep experience panel height correct on load / resize since it starts open
+  window.addEventListener('load', () => {
+    const expPanel = document.getElementById('panel-experience');
+    expPanel.style.maxHeight = expPanel.scrollHeight + 'px';
+  });
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.row[aria-expanded="true"]').forEach(row => {
+      const panel = document.getElementById(row.getAttribute('aria-controls'));
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    });
+  });
+
+</script>
+
+</body>
+</html>
