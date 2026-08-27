@@ -9,11 +9,13 @@
 ## Step-by-Step Guide
 
 An IAM identity was used for this project instead of the AWS root user, following AWS best practices for minimizing the use of highly privileged root credentials.
-<img width="1920" height="1080" alt="01-iam-user-acc-create" src="https://github.com/user-attachments/assets/392f3648-802c-491d-a133-5356f0607c63" />
+<img width="1920" height="1031" alt="01-iam-user-acc-create" src="https://github.com/user-attachments/assets/d1d029ab-6e26-419f-962d-671497b19159" />
+
 
 
 ### 1. Purchasing a Domain Name
-<img width="1897" height="951" alt="02-register-domain-route-53" src="https://github.com/user-attachments/assets/d07b6fe0-8bdf-4b42-be3d-5b4e60ad1a82" />
+<img width="1897" height="951" alt="02-register-domain-route-53" src="https://github.com/user-attachments/assets/05bacacd-54a5-4aaa-a4ec-2f6c8511fc34" />
+
 
 The first step is to purchase a domain name. In this project, No domain was purchased since its cost-optimized (even completely cost-free)
 You start by searching for an available domain name, provide your contact details, verify the information, and complete the purchase.
@@ -39,17 +41,19 @@ Server-side encryption is also normally recommended rather than disabling it.
 
 After creating the bucket, we upload our website files.
 
-<img width="1920" height="1080" alt="03-creeate-s3-bucket" src="https://github.com/user-attachments/assets/f9950884-b8e2-4520-ac97-4614ba3f4013" />
-<img width="1920" height="1080" alt="04-upload-files-to-S3" src="https://github.com/user-attachments/assets/864a0df6-5dec-4ccc-b0ca-a6aad9db31a5" />
+<img width="1920" height="1022" alt="03-creeate-s3-bucket" src="https://github.com/user-attachments/assets/0d5e0a1f-ed09-4ebe-9080-4cf2a69070e1" />
+<img width="1920" height="1031" alt="04-upload-files-to-S3" src="https://github.com/user-attachments/assets/29c74677-35ee-4222-90e5-de77a5c94618" />
+
 
 Once the files are uploaded, we configure the S3 bucket for static website hosting.
 We go to the bucket's properties and enable static website hosting.
 We then specify the index document, which in this case is: index.html
 
-<img width="1920" height="1080" alt="05-enable-S3-hosting" src="https://github.com/user-attachments/assets/133d0723-0e78-4fa2-a3bf-79171cc214ea" />
+<img width="1920" height="1013" alt="05-enable-S3-hosting" src="https://github.com/user-attachments/assets/a9dcda61-bf2b-4bf2-92cb-0e38e72aab37" />
+
 
 ### If you encounter a 403 Forbidden / AccessDenied error when trying to access your website, check the permissions on your S3 bucket.
-<img width="1917" height="650" alt="06-s3-host-error" src="https://github.com/user-attachments/assets/176cac1e-913f-4104-8410-35097dd9de8d" />
+<img width="1917" height="650" alt="06-s3-host-error" src="https://github.com/user-attachments/assets/67103b60-b1ea-42ff-b606-6d171e016e0f" />
 
 
 For a traditional S3 static website hosting setup, the bucket may require a bucket policy that allows users to retrieve (s3:GetObject) the website files.
@@ -68,12 +72,13 @@ If the required policy is missing, you can add a policy similar to the following
   ]
 }
 `
-<img width="1917" height="967" alt="07-s3-host-error-policy-fix" src="https://github.com/user-attachments/assets/f1a5030b-3405-4878-9b71-5e46975fc50b" />
+<img width="1917" height="967" alt="07-s3-host-error-policy-fix" src="https://github.com/user-attachments/assets/9d5bc294-6c2a-45d9-a8c3-1df351d8f0cf" />
+
 
 ### Important
 This policy makes the objects in the bucket publicly readable. It is therefore intended for the traditional S3 static website hosting approach.
 
-<img width="1917" height="440" alt="07-s3-host-live" src="https://github.com/user-attachments/assets/fc3a9bac-fb43-4e0c-8bdf-02f2961c9b9d" />
+<img width="1917" height="440" alt="07-s3-host-live" src="https://github.com/user-attachments/assets/e46869c5-efdb-4748-8f2f-cec4ef797683" />
 
 
 
@@ -82,7 +87,8 @@ This policy makes the objects in the bucket publicly readable. It is therefore i
 Now we want our website to use HTTPS rather than plain HTTP.
 
 For that, we use AWS Certificate Manager (ACM).
-<img width="1901" height="907" alt="08-AWS-Certificate-Manager" src="https://github.com/user-attachments/assets/b1bc7316-b7e3-4fb1-a94e-d2eafaf35391" />
+<img width="1901" height="907" alt="08-AWS-Certificate-Manager" src="https://github.com/user-attachments/assets/49f83762-c48a-4f12-ab4f-55ef4ddb0434" />
+
 
 An SSL/TLS certificate basically proves that we control the domain and allows users to establish an encrypted HTTPS connection with our website.
 We navigate to Certificate Manager and choose Request a certificate.
